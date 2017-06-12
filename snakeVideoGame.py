@@ -11,3 +11,10 @@ if checkErrors[1] > 0:
     sys.exit(-1)
 else:
     print("Game was successfully initialized")
+    
+#Board to play
+heightWidthTuple = (720, 460)
+playBoard = pygame.display.set_mode(heightWidthTuple)
+
+#set the window header
+pygame.display.set_caption("Snake Video Game")
