@@ -18,3 +18,11 @@ playBoard = pygame.display.set_mode(heightWidthTuple)
 
 #set the window header
 pygame.display.set_caption("Snake Video Game")
+
+#Colors: (R, G, B) values are from 0 to 255 
+red = pygame.Color(255, 0, 0) # gameOver
+green = pygame.Color(0, 255, 0) # snake
+blue = pygame.Color(0, 0, 255) # use not defined
+black = pygame.Color(0, 0, 0) # score
+white = pygame.Color(255, 255, 255) # background
+brown = pygame.Color(165, 42, 42) # food
