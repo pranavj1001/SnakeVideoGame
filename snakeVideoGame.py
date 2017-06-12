@@ -29,7 +29,24 @@ brown = pygame.Color(165, 42, 42) # food
 
 #Game Variables
 fpsController = pygame.time.Clock() # FPS controller
+
 snakePosition = [360, 230]
 snakeBody = [[360, 230], [350, 230], [340, 230]]
+
 foodPosition = [random.randrange(1,72)*10, random.randrange(1,46)*10]
 foodSpawn = True
+
+direction = "RIGHT"
+changeTo = direction
+
+# Game Over Function
+def gameOver():
+    font = pygame.font.SysFont('monaco', 72)
+    gameOverText = font.render('Game Over!', True, red)
+    gameOverRect = gameOverText.get_rect()
+    gameOverRect.midtop = (360, 30)
+    playBoard.blit(gameOverText, gameOverRect)
+    pygame.display.flip()
+    
+gameOver()
+time.sleep(10)
