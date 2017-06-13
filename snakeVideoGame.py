@@ -47,6 +47,24 @@ def gameOver():
     gameOverRect.midtop = (360, 30)
     playBoard.blit(gameOverText, gameOverRect)
     pygame.display.flip()
+    time.sleep(5)
+    pygame.quit()
+    sys.exit()
     
-gameOver()
-time.sleep(10)
+#Main logic
+while 1:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP or event.key == ord('w'):
+                changeto = 'UP'
+            if event.key == pygame.K_LEFT or event.key == ord('a'):
+                changeto = 'LEFT'
+            if event.key == pygame.K_DOWN or event.key == ord('s'):
+                changeto = 'DOWN'
+            if event.key == pygame.K_RIGHT or event.key == ord('d'):
+                changeto = 'RIGHT'
+            if event.key == pygame.K_ESCAPE:
+                pygame.event.post(pygame.event.Event(QUIT)) # create an event to quit the game
