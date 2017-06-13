@@ -88,3 +88,13 @@ while 1:
         snakePosition[1] -= 10
     if direction == 'DOWN':
         snakePosition[1] += 10
+        
+    #Body Mechanism
+    snakeBody.insert(0, list(snakePosition))
+    if snakePosition[0] == foodPosition[0] and snakePosition[1] == foodPosition[1]:
+        foodSpawn = False
+    else:
+        snakeBody.pop()
+        
+    if foodSpawn == False:
+        foodPosition = [random.randrange(1,72)*10, random.randrange(1,46)*10]
