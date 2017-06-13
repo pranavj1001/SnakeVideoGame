@@ -78,3 +78,13 @@ while 1:
         direction = 'UP'
     if changeto == 'DOWN' and not direction == 'UP':
         direction = 'DOWN'
+        
+    #change the snake's position
+    if direction == 'RIGHT':
+        snakePosition[0] += 10
+    if direction == 'LEFT':
+        snakePosition[0] -= 10
+    if direction == 'UP':
+        snakePosition[1] -= 10
+    if direction == 'DOWN':
+        snakePosition[1] += 10
