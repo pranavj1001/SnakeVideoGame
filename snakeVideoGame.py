@@ -59,24 +59,24 @@ while 1:
             sys.exit()
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP or event.key == ord('w'):
-                changeto = 'UP'
+                changeTo = 'UP'
             if event.key == pygame.K_LEFT or event.key == ord('a'):
-                changeto = 'LEFT'
+                changeTo = 'LEFT'
             if event.key == pygame.K_DOWN or event.key == ord('s'):
-                changeto = 'DOWN'
+                changeTo = 'DOWN'
             if event.key == pygame.K_RIGHT or event.key == ord('d'):
-                changeto = 'RIGHT'
+                changeTo = 'RIGHT'
             if event.key == pygame.K_ESCAPE:
                 pygame.event.post(pygame.event.Event(QUIT)) # create an event to quit the game
     
     #validation of the direction
-    if changeto == 'RIGHT' and not direction == 'LEFT':
+    if changeTo == 'RIGHT' and not direction == 'LEFT':
         direction = 'RIGHT'
-    if changeto == 'LEFT' and not direction == 'RIGHT':
+    if changeTo == 'LEFT' and not direction == 'RIGHT':
         direction = 'LEFT'
-    if changeto == 'UP' and not direction == 'DOWN':
+    if changeTo == 'UP' and not direction == 'DOWN':
         direction = 'UP'
-    if changeto == 'DOWN' and not direction == 'UP':
+    if changeTo == 'DOWN' and not direction == 'UP':
         direction = 'DOWN'
         
     #change the snake's position
@@ -98,3 +98,19 @@ while 1:
         
     if foodSpawn == False:
         foodPosition = [random.randrange(1,72)*10, random.randrange(1,46)*10]
+    foodSpawn = True
+    
+    # set white background for the playBoard area
+    playBoard.fill(white)
+    
+    # draw the snake
+    for position in snakeBody:
+        pygame.draw.rect(playBoard, green, pygame.Rect(position[0], position[1], 10, 10))
+    
+    # update display
+    pygame.display.update()
+    
+    # set fps
+    fpsController.tick(25)
+        
+        
