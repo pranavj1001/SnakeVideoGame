@@ -46,12 +46,26 @@ def gameOver():
     font = pygame.font.SysFont('monaco', 72)
     gameOverText = font.render('Game Over!', True, red)
     gameOverRect = gameOverText.get_rect()
-    gameOverRect.midtop = (360, 30)
+    gameOverRect.midtop = (400, 30)
     playBoard.blit(gameOverText, gameOverRect)
     pygame.display.flip()
-    time.sleep(5)
-    pygame.quit()
-    sys.exit()
+    font1 = pygame.font.SysFont('monaco', 40)
+    gameContinueText = font1.render('Press Escape to Quit', True, blue)
+    gameContinueRect = gameContinueText.get_rect()
+    gameContinueRect.midtop = (400, 150)
+    playBoard.blit(gameContinueText, gameContinueRect)
+    pygame.display.flip()
+    while 1:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    pygame.quit()
+                    sys.exit()
+                # if event.key == pygame.K_SPACE:
+                #     continueGame = True
         
 #Main logic
 while 1:
@@ -136,5 +150,4 @@ while 1:
     
     # update display
     pygame.display.update()
-        
     
