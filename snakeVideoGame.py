@@ -41,6 +41,20 @@ changeTo = direction
 
 gamePaused = False
 
+score = 0
+
+# function to display Score
+def displayScore(whileInGame):
+    font = pygame.font.SysFont('monaco', 40)
+    scoreText = font.render('Score: ' + str(score), True, blue)
+    scoreRect = scoreText.get_rect()
+    if whileInGame == True:
+        scoreRect.midtop = (75, 30)
+    else:
+        scoreRect.midtop = (400, 500)
+    playBoard.blit(scoreText, scoreRect)
+    pygame.display.flip()
+
 # Game Over Function
 def gameOver():
     font = pygame.font.SysFont('monaco', 72)
@@ -55,6 +69,7 @@ def gameOver():
     gameContinueRect.midtop = (400, 150)
     playBoard.blit(gameContinueText, gameContinueRect)
     pygame.display.flip()
+    displayScore(False)
     while 1:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -65,6 +80,7 @@ def gameOver():
                     pygame.quit()
                     sys.exit()
                 # if event.key == pygame.K_SPACE:
+                #     whileInGame = True
                 #     continueGame = True
         
 #Main logic
@@ -120,6 +136,7 @@ while 1:
     snakeBody.insert(0, list(snakePosition))
     if snakePosition[0] == foodPosition[0] and snakePosition[1] == foodPosition[1]:
         foodSpawn = False
+        score += 1
     else:
         snakeBody.pop()
         
@@ -150,4 +167,5 @@ while 1:
     
     # update display
     pygame.display.update()
+    displayScore(True)
     
