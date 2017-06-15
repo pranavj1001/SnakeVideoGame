@@ -57,7 +57,7 @@ def gameOver():
 while 1:
     
     # set fps
-    fpsController.tick(25)
+    fpsController.tick(20)
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -120,7 +120,10 @@ while 1:
     for position in snakeBody:
         pygame.draw.rect(playBoard, green, pygame.Rect(position[0], position[1], 10, 10))
     
+    # draw the food
+    pygame.draw.rect(playBoard, brown, pygame.Rect(foodPosition[0], foodPosition[1], 10, 10))
+    
     # update display
     pygame.display.update()
         
-        
+    
