@@ -39,6 +39,8 @@ foodSpawn = True
 direction = "RIGHT"
 changeTo = direction
 
+gamePaused = False
+
 # Game Over Function
 def gameOver():
     font = pygame.font.SysFont('monaco', 72)
@@ -50,9 +52,13 @@ def gameOver():
     time.sleep(5)
     pygame.quit()
     sys.exit()
-    
+        
 #Main logic
 while 1:
+    
+    # set fps
+    fpsController.tick(25)
+    
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -68,26 +74,33 @@ while 1:
                 changeTo = 'RIGHT'
             if event.key == pygame.K_ESCAPE:
                 pygame.event.post(pygame.event.Event(QUIT)) # create an event to quit the game
+            if event.key == pygame.K_SPACE:
+                if not gamePaused:
+                    gamePaused = True
+                else:
+                    gamePaused = False
     
-    #validation of the direction
-    if changeTo == 'RIGHT' and not direction == 'LEFT':
-        direction = 'RIGHT'
-    if changeTo == 'LEFT' and not direction == 'RIGHT':
-        direction = 'LEFT'
-    if changeTo == 'UP' and not direction == 'DOWN':
-        direction = 'UP'
-    if changeTo == 'DOWN' and not direction == 'UP':
-        direction = 'DOWN'
+    if not gamePaused:
         
-    #change the snake's position
-    if direction == 'RIGHT':
-        snakePosition[0] += 10
-    if direction == 'LEFT':
-        snakePosition[0] -= 10
-    if direction == 'UP':
-        snakePosition[1] -= 10
-    if direction == 'DOWN':
-        snakePosition[1] += 10
+        #validation of the direction
+        if changeTo == 'RIGHT' and not direction == 'LEFT':
+            direction = 'RIGHT'
+        if changeTo == 'LEFT' and not direction == 'RIGHT':
+            direction = 'LEFT'
+        if changeTo == 'UP' and not direction == 'DOWN':
+            direction = 'UP'
+        if changeTo == 'DOWN' and not direction == 'UP':
+            direction = 'DOWN'
+        
+        #change the snake's position
+        if direction == 'RIGHT':
+            snakePosition[0] += 10
+        if direction == 'LEFT':
+            snakePosition[0] -= 10
+        if direction == 'UP':
+            snakePosition[1] -= 10
+        if direction == 'DOWN':
+            snakePosition[1] += 10
         
     #Body Mechanism
     snakeBody.insert(0, list(snakePosition))
@@ -109,8 +122,5 @@ while 1:
     
     # update display
     pygame.display.update()
-    
-    # set fps
-    fpsController.tick(25)
         
         
