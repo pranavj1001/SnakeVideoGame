@@ -1,6 +1,8 @@
 # SnakeVideoGame
 Simple Snake Game made with Python
 
+<br><br>
+
 Hey There,
 
 This repo contains the classic Snake game that we all know from the old phones.
