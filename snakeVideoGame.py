@@ -13,7 +13,7 @@ else:
     print("Game was successfully initialized")
     
 #Board to play
-heightWidthTuple = (720, 460)
+heightWidthTuple = (800, 600)
 playBoard = pygame.display.set_mode(heightWidthTuple)
 
 #set the window header
@@ -122,6 +122,17 @@ while 1:
     
     # draw the food
     pygame.draw.rect(playBoard, brown, pygame.Rect(foodPosition[0], foodPosition[1], 10, 10))
+    
+    # if snake hits the boundary
+    if snakePosition[0] > 790 or snakePosition[0] < 0:
+        gameOver()
+    if snakePosition[1] > 690 or snakePosition[1] < 0:
+        gameOver()      
+    
+    # if the snake hits itself
+    for snakePart in snakeBody[1:]:
+        if snakePosition[0] == snakePart[0] and snakePosition[1] == snakePart[1]:
+            gameOver()
     
     # update display
     pygame.display.update()
